@@ -1,0 +1,2 @@
+# QueryParams
+针对sql,hql进行包装，不需要自己写sql，全自动生成对应实体的DaoQueryParam，只需要简单的set便可实现sql的生成
