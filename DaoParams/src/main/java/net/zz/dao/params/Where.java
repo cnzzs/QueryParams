@@ -10,7 +10,7 @@ public class Where extends QueryParams {
     private Map<String, Object[]> wheres = new HashMap<String, Object[]>();
     protected Map<String, Object> attrs = new HashMap<String, Object>();
     protected List<Object> paras = new ArrayList<Object>();
-
+    protected  String alias = "";
     public Where() {
 
     }
@@ -167,7 +167,9 @@ public class Where extends QueryParams {
     }
 
 
-
+    public String alias(){
+        return alias;
+    }
 
     @Override
     public String toString() {
