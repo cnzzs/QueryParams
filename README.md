@@ -452,16 +452,16 @@ public class MnMemberDaoParams extends Where{
 	}
 
 	输出结果：
-----------------这里是key,value形式-------------
-mn_member.deviceId= :deviceId  or mn_goods_ower.cityName= :cityName  and mn_member.userId is not null  and mn_member.version= :version
-p:cityName_____value:厦门
-p:deviceId_____value:设备id	
-p:version_____value:2.0  
-----------------这里是?代替形式------------- 
-mn_member.deviceId= ?  or mn_goods_ower.cityName= ?  and mn_member.userId is not null  and mn_member.version= ?
-第1个？的值：设备id
-第2个？的值：厦门
-第3个？的值：2.0 
+	----------------这里是key,value形式-------------
+	 mn_member.deviceId= :deviceId  or mn_goods_ower.cityName= :cityName  and mn_member.userId is not null  and mn_member.version= :version 
+	p:cityName_____value:厦门
+	p:deviceId_____value:设备id
+	p:version_____value:2.0
+	----------------这里是?代替形式-------------
+	 mn_member.deviceId= ?  or mn_goods_ower.cityName= ?  and mn_member.userId is not null  and mn_member.version= ? 
+	第1个？的值：设备id
+	第2个？的值：厦门
+	第3个？的值：2.0
 
 
 
