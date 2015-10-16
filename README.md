@@ -13,7 +13,6 @@ import java.util.List;
     * mn_member 请求参数封装类
     * Thu Oct 15 18:11:09 CST 2015 ZaoSheng
     */ 
-
 //@Table(name = "mn_member")
 //@Entity
 public class MnMemberDaoParams extends Where{
