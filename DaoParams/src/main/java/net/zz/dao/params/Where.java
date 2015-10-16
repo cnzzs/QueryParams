@@ -16,7 +16,7 @@ public class Where extends QueryParams {
     }
 
     public  Where(String propertyName, Object value, String prefix) {
-        first = propertyName;
+       
         add(propertyName, value, AndOr.NUL, Restriction.EQ, prefix);
     }
 
@@ -96,6 +96,10 @@ public class Where extends QueryParams {
         return this;
     }
     protected Where add(String key, Object value, AndOr andor, Restriction restriction, String prefix) {
+       if (null == first){
+           first = key;
+           andor = AndOr.NUL;
+       }
         switch (restriction) {
             case NULL:
             case NOTNULL:
