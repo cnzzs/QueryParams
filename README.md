@@ -424,7 +424,8 @@ public class MnMemberDaoParams extends Where{
 		return this;
 	}
 }
-//接下来就是对应的简单测试，生成where
+//接下来就是对应的简单测试，生成where语句
+
 	public static void main(String[] args) {
 		MemberDaoParams params1 = new MemberDaoParams();
 		params1.setdeviceId("设备id").setversion("2.0").setuserIdNotNull().or(GoodsOwerDaoParams.Field.cityName.name(), "厦门", "mn_goods_ower");
