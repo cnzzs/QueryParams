@@ -424,7 +424,6 @@ public class MnMemberDaoParams extends Where{
 		return this;
 	}
 }
-
 //接下来就是对应的简单测试，生成where
 	public static void main(String[] args) {
 		MemberDaoParams params1 = new MemberDaoParams();
