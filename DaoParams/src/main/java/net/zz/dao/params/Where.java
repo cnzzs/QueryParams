@@ -141,7 +141,7 @@ public class Where extends QueryParams {
             case LIKE:
             case LLIKE:
             case RLIKE:
-                sb.append(andOr.toMatchString(prefix + key, "like :" + key));
+                sb.append(andOr.toMatchString(prefix + key, " like :" + key));
                 attrs.put(key, restriction.toMatchString(objects[0].toString()));
                 break;
             case NULL:
