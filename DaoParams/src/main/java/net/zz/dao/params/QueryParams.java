@@ -199,6 +199,11 @@ public abstract class QueryParams implements Params {
         return whereSQL;
     }
 
+    @Override
+    public String toString() {
+        return  sql.toString();
+    }
+
     public static void main(String[] args) {
         StringBuilder sb = new StringBuilder();
 

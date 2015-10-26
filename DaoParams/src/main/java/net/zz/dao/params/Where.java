@@ -171,10 +171,6 @@ public class Where extends QueryParams {
         return alias;
     }
 
-    @Override
-    public String toString() {
-        return toFormatSQL();
-    }
 
     @Override
     public Map<String, Object> getAttrs() {
