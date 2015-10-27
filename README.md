@@ -3,7 +3,7 @@
 认为不应该再把时间浪费在繁琐的where语句这边(也让其刚入门的友友减少对sql难度)，我认为可以直接用做实体进行实体与表的关联。接下来整合JFianl或者Hibernate，然后一边开发一边完善，作为个人的开发，也希望能有志同道合的一起来完善。
 
 下面是自动生成的具体DaoParam(将其当作实体，待测试)
-
+```java
 package com.huodou.dao.params;
 import java.sql.Timestamp;
 import net.zz.dao.params.*;
@@ -449,6 +449,7 @@ public class MnMemberDaoParams extends Where{
 			
 		}
 	}
+```
 
 	输出结果：
 	----------------这里是key,value形式-------------
