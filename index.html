@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Queryparams by cnzzs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Queryparams</h1>
+      <h2 class="project-tagline">For SQL, HQL for packaging, do not need to write their own SQL, automatic generate corresponding entities DaoQueryParam, simply set can achieve the SQL generated </h2>
+      <a href="https://github.com/cnzzs/QueryParams" class="btn">View on GitHub</a>
+      <a href="https://github.com/cnzzs/QueryParams/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/cnzzs/QueryParams/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="queryparams" class="anchor" href="#queryparams" aria-hidden="true"><span class="octicon octicon-link"></span></a>QueryParams</h1>
+
+<p>For SQL, HQL for packaging, do not need to write their own SQL, automatic generate corresponding entities DaoQueryParam, simply set can achieve the SQL generated</p>
+
+<p>Think shouldn't waste time on the red side where clause (also let the beginner friends friends to reduce the difficulty of SQL), I think that can be directly used as entity entities associated with the table. Then integrate JFianl or Hibernate, then development and perfect, as the development of the individual, also hope to have like-minded together to complete.</p>
+
+<p>Below is the specific DaoParam automatically generated (As a database mapping entity, under test )</p>
+
+<div class="highlight highlight-source-java"><pre><span class="pl-k">package</span> <span class="pl-smi">com.huodou.dao.params</span>;
+<span class="pl-k">import</span> <span class="pl-smi">java.sql.Timestamp</span>;
+<span class="pl-k">import</span> <span class="pl-smi">net.zz.dao.params.*</span>;
+<span class="pl-k">import</span> <span class="pl-smi">java.util.List</span>;
+
+   <span class="pl-c">/**</span>
+<span class="pl-c">    * mn_member Request parameters wrapper class </span>
+<span class="pl-c">    * Thu Oct 15 18:11:09 CST 2015 ZaoSheng</span>
+<span class="pl-c">    */</span> 
+<span class="pl-c">//@Table(name = "mn_member")</span>
+<span class="pl-c">//@Entity</span>
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MnMemberDaoParams</span> <span class="pl-k">extends</span> <span class="pl-e">Where</span>{
+    <span class="pl-k">public</span> <span class="pl-en">MnMemberDaoParams</span>() {
+        alias <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>mn_member<span class="pl-pds">"</span></span>;
+                where();
+    }
+    <span class="pl-k">public</span> <span class="pl-k">enum</span> <span class="pl-en">Field</span> {
+        <span class="pl-en">mid</span>("<span class="pl-v">mid</span>"),<span class="pl-en">deviceId</span>("<span class="pl-v">device_id</span>"),<span class="pl-en">deviceType</span>("<span class="pl-v">device_type</span>"),<span class="pl-en">version</span>("<span class="pl-v">version</span>"),<span class="pl-en">ip</span>("<span class="pl-smi">IP</span>");
+        <span class="pl-k">private</span> <span class="pl-smi">String</span> column;
+
+        <span class="pl-k">private</span> <span class="pl-en">Field</span>(<span class="pl-smi">String</span> <span class="pl-v">column</span>) {
+            <span class="pl-v">this</span><span class="pl-k">.</span>column <span class="pl-k">=</span> column;
+        }
+        <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getColumn</span>() {
+            <span class="pl-k">return</span> column;
+
+        }
+        <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">String</span> <span class="pl-en">getSelect</span>()
+        {
+            <span class="pl-k">return</span> getSelect(<span class="pl-s"><span class="pl-pds">"</span>d<span class="pl-pds">"</span></span>);
+        }
+        <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">String</span> <span class="pl-en">getSelect</span>(<span class="pl-smi">String</span> <span class="pl-v">prefix</span>)
+        {
+            <span class="pl-smi">StringBuilder</span> sb <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">StringBuilder</span>();
+            <span class="pl-k">for</span> ( <span class="pl-smi">Field</span> field <span class="pl-k">:</span> <span class="pl-smi">Field</span><span class="pl-k">.</span>values()) {
+                sb<span class="pl-k">.</span>append(<span class="pl-smi">String</span><span class="pl-k">.</span>format(<span class="pl-s"><span class="pl-pds">"</span> %s.`%s` %s, <span class="pl-pds">"</span></span>, prefix, field<span class="pl-k">.</span>getColumn(), field<span class="pl-k">.</span>name()));
+            }
+            sb<span class="pl-k">.</span>deleteCharAt(sb<span class="pl-k">.</span>length() <span class="pl-k">-</span> <span class="pl-c1">2</span>);
+            <span class="pl-k">return</span> sb<span class="pl-k">.</span>toString();
+        }
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setmid</span>(<span class="pl-smi">Long</span> <span class="pl-v">mid</span>){
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>mid<span class="pl-k">.</span>name(), mid, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-c">//@Id</span>
+    <span class="pl-c">//@GeneratedValue(strategy = GenerationType.AUTO)</span>
+    <span class="pl-c">//@Column(name = "mid")</span>
+    <span class="pl-k">public</span> <span class="pl-smi">Long</span> <span class="pl-en">getmid</span>(){
+        <span class="pl-k">return</span> (<span class="pl-smi">Long</span>) attrs<span class="pl-k">.</span>get(<span class="pl-smi">Field</span><span class="pl-k">.</span>mid<span class="pl-k">.</span>name());
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setmidBetween</span>(<span class="pl-k">Long</span>[] <span class="pl-v">mid</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>mid<span class="pl-k">.</span>name(), mid, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>BW</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setmidNE</span>(<span class="pl-smi">Long</span> <span class="pl-v">mid</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>mid<span class="pl-k">.</span>name(), mid, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>NE</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setmidGE</span>(<span class="pl-smi">Long</span> <span class="pl-v">mid</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>mid<span class="pl-k">.</span>name(), mid, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>GE</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setmidGT</span>(<span class="pl-smi">Long</span> <span class="pl-v">mid</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>mid<span class="pl-k">.</span>name(), mid, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>GT</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setmidIn</span>(<span class="pl-k">List&lt;<span class="pl-smi">Object</span>&gt;</span> <span class="pl-v">mid</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>mid<span class="pl-k">.</span>name(), mid, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>IN</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setmidNIn</span>(<span class="pl-k">List&lt;<span class="pl-smi">Object</span>&gt;</span> <span class="pl-v">mid</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>mid<span class="pl-k">.</span>name(), mid, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>NIN</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setmidNull</span>() {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>mid<span class="pl-k">.</span>name(), <span class="pl-c1">null</span>, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>NUL</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setmidNotNull</span>() {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>mid<span class="pl-k">.</span>name(), <span class="pl-c1">null</span>, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>NNUL</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceType</span>(<span class="pl-smi">Integer</span> <span class="pl-v">deviceType</span>){
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceType<span class="pl-k">.</span>name(), deviceType, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+<span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceId</span>(<span class="pl-smi">String</span> <span class="pl-v">deviceId</span>){
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceId<span class="pl-k">.</span>name(), deviceId, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-c">//@Column(name = "device_id")</span>
+    <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getdeviceId</span>(){
+        <span class="pl-k">return</span> (<span class="pl-smi">String</span>) attrs<span class="pl-k">.</span>get(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceId<span class="pl-k">.</span>name());
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceIdLLike</span>(<span class="pl-smi">String</span> <span class="pl-v">deviceId</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceId<span class="pl-k">.</span>name(), deviceId, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>LLIKE</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceIdRLike</span>(<span class="pl-smi">String</span> <span class="pl-v">deviceId</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceId<span class="pl-k">.</span>name(), deviceId, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>RLIKE</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceIdLike</span>(<span class="pl-smi">String</span> <span class="pl-v">deviceId</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceId<span class="pl-k">.</span>name(), deviceId, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>LIKE</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceIdIn</span>(<span class="pl-k">List&lt;<span class="pl-smi">Object</span>&gt;</span> <span class="pl-v">deviceId</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceId<span class="pl-k">.</span>name(), deviceId, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>IN</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceIdNIn</span>(<span class="pl-k">List&lt;<span class="pl-smi">Object</span>&gt;</span> <span class="pl-v">deviceId</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceId<span class="pl-k">.</span>name(), deviceId, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>NIN</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceIdNull</span>() {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceId<span class="pl-k">.</span>name(), <span class="pl-c1">null</span>, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>NULL</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceIdNotNull</span>() {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceId<span class="pl-k">.</span>name(), <span class="pl-c1">null</span>, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>NOTNULL</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceType</span>(<span class="pl-smi">Integer</span> <span class="pl-v">deviceType</span>){
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceType<span class="pl-k">.</span>name(), deviceType, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-c">//@Column(name = "device_type")</span>
+    <span class="pl-k">public</span> <span class="pl-smi">Integer</span> <span class="pl-en">getdeviceType</span>(){
+        <span class="pl-k">return</span> (<span class="pl-smi">Integer</span>) attrs<span class="pl-k">.</span>get(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceType<span class="pl-k">.</span>name());
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceTypeBetween</span>(<span class="pl-k">Integer</span>[] <span class="pl-v">deviceType</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceType<span class="pl-k">.</span>name(), deviceType, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>BW</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceTypeNE</span>(<span class="pl-smi">Integer</span> <span class="pl-v">deviceType</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceType<span class="pl-k">.</span>name(), deviceType, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>NE</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceTypeGE</span>(<span class="pl-smi">Integer</span> <span class="pl-v">deviceType</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceType<span class="pl-k">.</span>name(), deviceType, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>GE</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceTypeGT</span>(<span class="pl-smi">Integer</span> <span class="pl-v">deviceType</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceType<span class="pl-k">.</span>name(), deviceType, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>GT</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceTypeIn</span>(<span class="pl-k">List&lt;<span class="pl-smi">Object</span>&gt;</span> <span class="pl-v">deviceType</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceType<span class="pl-k">.</span>name(), deviceType, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>IN</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceTypeNIn</span>(<span class="pl-k">List&lt;<span class="pl-smi">Object</span>&gt;</span> <span class="pl-v">deviceType</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceType<span class="pl-k">.</span>name(), deviceType, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>NIN</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceTypeNull</span>() {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceType<span class="pl-k">.</span>name(), <span class="pl-c1">null</span>, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>NUL</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceTypeNotNull</span>() {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceType<span class="pl-k">.</span>name(), <span class="pl-c1">null</span>, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>NNUL</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setdeviceToken</span>(<span class="pl-smi">String</span> <span class="pl-v">deviceToken</span>){
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>deviceToken<span class="pl-k">.</span>name(), deviceToken, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-c">//@Column(name = "version")</span>
+    <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getversion</span>(){
+        <span class="pl-k">return</span> (<span class="pl-smi">String</span>) attrs<span class="pl-k">.</span>get(<span class="pl-smi">Field</span><span class="pl-k">.</span>version<span class="pl-k">.</span>name());
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setversionLLike</span>(<span class="pl-smi">String</span> <span class="pl-v">version</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>version<span class="pl-k">.</span>name(), version, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>LLK</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setversionRLike</span>(<span class="pl-smi">String</span> <span class="pl-v">version</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>version<span class="pl-k">.</span>name(), version, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>RLK</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setversionLike</span>(<span class="pl-smi">String</span> <span class="pl-v">version</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>version<span class="pl-k">.</span>name(), version, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>LK</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setversionIn</span>(<span class="pl-k">List&lt;<span class="pl-smi">Object</span>&gt;</span> <span class="pl-v">version</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>version<span class="pl-k">.</span>name(), version, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>IN</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setversionNIn</span>(<span class="pl-k">List&lt;<span class="pl-smi">Object</span>&gt;</span> <span class="pl-v">version</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>version<span class="pl-k">.</span>name(), version, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>NIN</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setversionNull</span>() {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>version<span class="pl-k">.</span>name(), <span class="pl-c1">null</span>, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>NUL</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setversionNotNull</span>() {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>version<span class="pl-k">.</span>name(), <span class="pl-c1">null</span>, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>NNUL</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-c">//@Column(name = "IP")</span>
+    <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getip</span>(){
+        <span class="pl-k">return</span> (<span class="pl-smi">String</span>) attrs<span class="pl-k">.</span>get(<span class="pl-smi">Field</span><span class="pl-k">.</span>ip<span class="pl-k">.</span>name());
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setipLLike</span>(<span class="pl-smi">String</span> <span class="pl-v">ip</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>ip<span class="pl-k">.</span>name(), ip, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>LLK</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setipRLike</span>(<span class="pl-smi">String</span> <span class="pl-v">ip</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>ip<span class="pl-k">.</span>name(), ip, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>RLK</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setipLike</span>(<span class="pl-smi">String</span> <span class="pl-v">ip</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>ip<span class="pl-k">.</span>name(), ip, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>LK</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setipIn</span>(<span class="pl-k">List&lt;<span class="pl-smi">Object</span>&gt;</span> <span class="pl-v">ip</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>ip<span class="pl-k">.</span>name(), ip, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>IN</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setipNIn</span>(<span class="pl-k">List&lt;<span class="pl-smi">Object</span>&gt;</span> <span class="pl-v">ip</span>) {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>ip<span class="pl-k">.</span>name(), ip, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>NIN</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setipNull</span>() {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>ip<span class="pl-k">.</span>name(), <span class="pl-c1">null</span>, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>NUL</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+    <span class="pl-k">public</span> <span class="pl-smi">MnMemberDaoParams</span> <span class="pl-en">setipNotNull</span>() {
+        and(<span class="pl-smi">Field</span><span class="pl-k">.</span>ip<span class="pl-k">.</span>name(), <span class="pl-c1">null</span>, <span class="pl-smi">Restriction</span><span class="pl-c1"><span class="pl-k">.</span>NNUL</span>, alias);
+        <span class="pl-k">return</span> <span class="pl-v">this</span>;
+    }
+}
+<span class="pl-c">//Followed by the corresponding simple test, the where clause </span>
+
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">void</span> main(<span class="pl-k">String</span>[] args) {
+        <span class="pl-smi">MemberDaoParams</span> params1 <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">MemberDaoParams</span>();
+        params1<span class="pl-k">.</span>setdeviceId(<span class="pl-s"><span class="pl-pds">"</span>deviceId1<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>setversion(<span class="pl-s"><span class="pl-pds">"</span>2.0<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>or(<span class="pl-smi">GoodsOwerDaoParams</span><span class="pl-k">.</span><span class="pl-smi">Field</span><span class="pl-k">.</span>cityName<span class="pl-k">.</span>name(), <span class="pl-s"><span class="pl-pds">"</span>XiaMen<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>mn_goods_ower<span class="pl-pds">"</span></span>);
+        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-s"><span class="pl-pds">"</span>----------------Here is the key, the value form -------------<span class="pl-pds">"</span></span>);
+        <span class="pl-c">//Here is the key, the value form </span>
+        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(params1<span class="pl-k">.</span>builderAttrs()<span class="pl-k">.</span>getSqlString());
+        <span class="pl-k">for</span>(<span class="pl-smi">String</span> p <span class="pl-k">:</span> params1<span class="pl-k">.</span>getAttrs()<span class="pl-k">.</span>keySet())
+        {
+            <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-smi">String</span><span class="pl-k">.</span>format(<span class="pl-s"><span class="pl-pds">"</span>p:%s_____value:%s<span class="pl-pds">"</span></span>, p, params1<span class="pl-k">.</span>getAttrs()<span class="pl-k">.</span>get(p)<span class="pl-k">.</span>toString()));
+
+        }
+
+        <span class="pl-c">//Not reset the internal storage, there needs to be manually reset. Front of or behind will lead to the key and the value together (usually don't like me to write both form... this is a test, but the next is to repair) </span>
+        params1<span class="pl-k">.</span>sql<span class="pl-k">.</span>setLength(<span class="pl-c1">0</span>);
+        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-s"><span class="pl-pds">"</span>----------------This is '?' Instead of the form -------------<span class="pl-pds">"</span></span>);
+        <span class="pl-c">//This is '?' Instead of the form </span>
+        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(params1<span class="pl-k">.</span>builderParas()<span class="pl-k">.</span>getSqlString());
+        <span class="pl-k">int</span> i <span class="pl-k">=</span> <span class="pl-c1">0</span>;
+        <span class="pl-k">for</span>(<span class="pl-smi">Object</span> p <span class="pl-k">:</span> params1<span class="pl-k">.</span>getParas())
+        {
+            <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-smi">String</span><span class="pl-k">.</span>format(<span class="pl-s"><span class="pl-pds">"</span>The %s of ？to value：%s<span class="pl-pds">"</span></span>, <span class="pl-k">++</span>i, p<span class="pl-k">.</span>toString()));
+
+        }
+    }</pre></div>
+
+<pre><code>###The output ：
+----------------Here is the key, the value form-------------
+ mn_member.deviceId= :deviceId  or mn_goods_ower.cityName= :cityName and mn_member.version= :version 
+p:cityName_____value:XiaMen
+p:deviceId_____value:deviceId1
+p:version_____value:2.0
+----------------This is '?' Instead of the form-------------
+ mn_member.deviceId= ?  or mn_goods_ower.cityName= ? and mn_member.version= ? 
+The 1 of ？to value：deviceId1
+The 2 of ？to value：XiaMen
+The 3 of ？to value：2.0
+</code></pre>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/cnzzs/QueryParams">Queryparams</a> is maintained by <a href="https://github.com/cnzzs">cnzzs</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
