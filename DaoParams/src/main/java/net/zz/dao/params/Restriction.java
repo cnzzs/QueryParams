@@ -65,7 +65,7 @@ public enum Restriction {
     /**
      * 两个值之间查询（from Object o where o.property between ? and ?）
      */
-    BETWEEN {
+    BW {
         @Override
         public String toMatchString(String pattern) {
             return String.format("%s between :%s1 and :%s2", pattern, pattern, pattern);
@@ -95,7 +95,7 @@ public enum Restriction {
     /* *
      * 左模糊查询（from Object o where o.property like %?）
      */
-    LLIKE {
+    LLK {
         @Override
         public String toMatchString(String pattern) {
             return "%" + pattern;
@@ -105,7 +105,7 @@ public enum Restriction {
    /* *
      * 右模糊查询（from Object o where o.property like ?%)
      */
-    RLIKE {
+    RLK {
         @Override
         public String toMatchString(String pattern) {
             return pattern + '%';
@@ -115,7 +115,7 @@ public enum Restriction {
    /* *
      * 模糊查询（from Object o where o.property like %?%)
      */
-    LIKE {
+    LK {
         @Override
         public String toMatchString(String pattern) {
             return '%' + pattern + '%';
@@ -124,7 +124,7 @@ public enum Restriction {
    /* *
      * 模糊查询（from Object o where o.property  is null)
      */
-    NULL {
+    NUL {
         @Override
         public String toMatchString(String pattern) {
             return  pattern + " is null";
@@ -133,7 +133,7 @@ public enum Restriction {
    /* *
      * 模糊查询（from Object o where o.property is not null)
      */
-   NOTNULL  {
+   NNUL  {
 
         @Override
         public String toMatchString(String pattern) {
