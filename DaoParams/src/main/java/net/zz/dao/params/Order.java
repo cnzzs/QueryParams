@@ -51,7 +51,7 @@ public class Order extends QueryParams {
     }
 
     public QueryParams builderParas() {
-        if (null != getOrder()) super.builderAttrs();
+        if (null != getOrder()) super.builderParas();
         else {
             if (null == sql) sql = new StringBuilder();
 

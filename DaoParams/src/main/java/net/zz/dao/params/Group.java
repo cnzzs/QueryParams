@@ -35,7 +35,7 @@ public class Group extends QueryParams {
     }
 
     public QueryParams builderParas() {
-        if (null != getGroup()) super.builderAttrs();
+        if (null != getGroup()) super.builderParas();
         else {
             if (null == sql) sql = new StringBuilder();
 

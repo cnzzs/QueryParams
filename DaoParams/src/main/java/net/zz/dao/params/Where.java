@@ -15,6 +15,10 @@ public class Where extends QueryParams {
 
     }
 
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
     public  Where(String propertyName, Object value, String prefix) {
        
         add(propertyName, value, AndOr.NUL, Restriction.EQ, prefix);
@@ -40,7 +44,7 @@ public class Where extends QueryParams {
     }
 
     public QueryParams builderParas() {
-        if (null != getWhere()) super.builderAttrs();
+        if (null != getWhere()) super.builderParas();
         else {
             if (null == sql) sql = new StringBuilder();
 
@@ -130,7 +134,8 @@ public class Where extends QueryParams {
             setSql(key, objects, sb);
 
         }
-        return sb.toString();
+
+        return " where " + sb.toString();
     }
 
     private void setSql(String key, Object[] objects, StringBuilder sb) {

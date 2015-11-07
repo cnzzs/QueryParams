@@ -49,7 +49,7 @@ public abstract class QueryParams implements Params {
     }
 
     public String getSqlString() {
-        return sql.toString();
+        return  sql.toString();
     }
 
     public StringBuilder getSql() {
@@ -80,9 +80,11 @@ public abstract class QueryParams implements Params {
 
     public QueryParams builderParas() {
         if (null == sql) sql = new StringBuilder(); else sql.setLength(0);
+
         if (null != where)  sql.append(where.toFormatSQL());
         if (null != order)  sql.append(order.toFormatSQL());
         if (null != group)  sql.append(group.toFormatSQL());
+
         return this;
     }
 
