@@ -1,7 +1,7 @@
 package net.zz.demo.dao.params;
 
-import net.zz.dao.params.Restriction;
 import net.zz.dao.params.Where;
+import net.zz.dao.params.enums.Restriction;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class UserDaoParams extends Where {
     }
 
     public void setUserIdLike(String userId) {
-        and(Field.userId.name(), userId, Restriction.LIKE, "user");
+        and(Field.userId.name(), userId, Restriction.LK, "user");
     }
 
     public void setUserIdIn(List<Object> userIds) {

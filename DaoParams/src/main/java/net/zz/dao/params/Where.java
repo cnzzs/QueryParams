@@ -1,5 +1,8 @@
 package net.zz.dao.params;
 
+import net.zz.dao.params.enums.AndOr;
+import net.zz.dao.params.enums.Restriction;
+
 import java.util.*;
 
 /**
@@ -105,8 +108,8 @@ public class Where extends QueryParams {
            andor = AndOr.NUL;
        }
         switch (restriction) {
-            case NULL:
-            case NOTNULL:
+            case NUL:
+            case NNUL:
                 wheres.put(key, new Object[]{null, andor, restriction, prefix });
                 break;
             default:
@@ -143,17 +146,17 @@ public class Where extends QueryParams {
         Restriction restriction = (Restriction) objects[2];
         String prefix = null == objects[3] ? "" : (objects[3] + ".");
         switch (restriction) {
-            case LIKE:
-            case LLIKE:
-            case RLIKE:
+            case LK:
+            case LLK:
+            case RLK:
                 sb.append(andOr.toMatchString(prefix + key, " like :" + key));
                 attrs.put(key, restriction.toMatchString(objects[0].toString()));
                 break;
-            case NULL:
-            case NOTNULL:
+            case NUL:
+            case NNUL:
                 sb.append(andOr.toMatchString(prefix, restriction.toMatchString(key)));
                 break;
-            case BETWEEN:
+            case BW:
                 System.out.println(restriction.toMatchString(key));
                 sb.append(andOr.toMatchString(prefix , restriction.toMatchString(key)));
                 Object[] value = (Object[]) objects[0];
@@ -194,7 +197,7 @@ public class Where extends QueryParams {
         where.or("class", 2);
         where.and("sex", true);
         where.and("no", 10, Restriction.LT);
-        where.and("age", new Integer[]{1, 10}, Restriction.BETWEEN);
+        where.and("age", new Integer[]{1, 10}, Restriction.BW);
         List<Object> ids = new ArrayList<Object>();
         ids.add(4);
         ids.add(3);

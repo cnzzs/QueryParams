@@ -1,4 +1,5 @@
-package net.zz.dao.params;
+package net.zz.dao.params.enums;
+
 
 /**
  * Created by ZaoSheng on 2015/7/30.
@@ -102,9 +103,9 @@ public enum Restriction {
         }
     },
 
-   /* *
-     * 右模糊查询（from Object o where o.property like ?%)
-     */
+    /* *
+      * 右模糊查询（from Object o where o.property like ?%)
+      */
     RLK {
         @Override
         public String toMatchString(String pattern) {
@@ -112,28 +113,28 @@ public enum Restriction {
         }
     },
 
-   /* *
-     * 模糊查询（from Object o where o.property like %?%)
-     */
+    /* *
+      * 模糊查询（from Object o where o.property like %?%)
+      */
     LK {
         @Override
         public String toMatchString(String pattern) {
             return '%' + pattern + '%';
         }
     },
-   /* *
-     * 模糊查询（from Object o where o.property  is null)
-     */
+    /* *
+      * 模糊查询（from Object o where o.property  is null)
+      */
     NUL {
         @Override
         public String toMatchString(String pattern) {
             return  pattern + " is null";
         }
     },
-   /* *
-     * 模糊查询（from Object o where o.property is not null)
-     */
-   NNUL  {
+    /* *
+      * 模糊查询（from Object o where o.property is not null)
+      */
+    NNUL  {
 
         @Override
         public String toMatchString(String pattern) {
@@ -143,4 +144,4 @@ public enum Restriction {
 
     public abstract String toMatchString(String pattern);
 
-    }
+}

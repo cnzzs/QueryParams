@@ -1,4 +1,4 @@
-package net.zz.dao.params;
+package net.zz.dao.params.enums;
 
 /**
  * Created by ZaoSheng on 2015/8/5.

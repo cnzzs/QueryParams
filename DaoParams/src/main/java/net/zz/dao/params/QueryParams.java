@@ -1,6 +1,8 @@
 package net.zz.dao.params;
 
 
+import net.zz.dao.params.enums.Restriction;
+
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -215,7 +217,7 @@ public abstract class QueryParams implements Params {
 
         QueryParams params = new Where();
 
-        params.where("name", "李斯哦", "t").or("no", new Object[]{12, 14}, Restriction.BETWEEN,"a").or("class", 2,"a").and("sex", null, Restriction.NULL, "t" );
+        params.where("name", "李斯哦", "t").or("no", new Object[]{12, 14}, Restriction.BW,"a").or("class", 2,"a").and("sex", null, Restriction.NUL, "t" );
         params.order("id","t").ASC("no","a");
         params.group("qq","t");
 //        where.and("a", new Object[]{"b","d"},Restriction.BETWEEN,"c");
