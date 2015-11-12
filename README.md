@@ -270,9 +270,9 @@ p:deviceId_____value:deviceId1
 p:version_____value:2.0
 ----------------This is '?' Instead of the form-------------
  mn_member.deviceId= ?  or mn_goods_ower.cityName= ? and mn_member.version= ? 
-The 1 of ？to value：deviceId1
-The 2 of ？to value：XiaMen
-The 3 of ？to value：2.0
+P1 of ？to value：deviceId1
+P2 of ？to value：XiaMen
+P3 of ？to value：2.0
 
 ```
 
