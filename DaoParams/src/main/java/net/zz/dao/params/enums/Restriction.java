@@ -79,7 +79,7 @@ public enum Restriction {
     IN {
         @Override
         public String toMatchString(String pattern) {
-            return String.format("in (:%s)" , pattern);
+            return String.format(" in (:%s)" , pattern);
         }
     },
 
@@ -89,7 +89,7 @@ public enum Restriction {
     NIN {
         @Override
         public String toMatchString(String pattern) {
-            return String.format("not in ( :%s )" , pattern);
+            return String.format(" not in ( :%s )" , pattern);
         }
     },
 
