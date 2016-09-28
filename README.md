@@ -4,6 +4,9 @@ For SQL, HQL for packaging, do not need to write their own SQL, automatic genera
 Think shouldn't waste time on the red side where clause (also let the beginner friends friends to reduce the difficulty of SQL), I think that can be directly used as entity entities associated with the table. Then integrate JFianl or Hibernate, then development and perfect, as the development of the individual, also hope to have like-minded together to complete.
 
 Below is the specific DaoParam automatically generated (As a database mapping entity, under test )
+
+Generated Tools：https://github.com/egzosn/db-manager-parent
+
 ```java
 
    /**

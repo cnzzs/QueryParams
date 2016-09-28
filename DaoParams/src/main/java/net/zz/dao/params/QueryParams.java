@@ -75,8 +75,8 @@ public abstract class QueryParams implements Params {
     public QueryParams builderAttrs() {
         if (null == sql) sql = new StringBuilder(); else sql.setLength(0);
         if (null != where)  sql.append(where.toSQL());
-        if (null != order)  sql.append(order.toSQL());
         if (null != group)  sql.append(group.toSQL());
+        if (null != order)  sql.append(order.toSQL());
         return this;
     }
 
@@ -84,8 +84,8 @@ public abstract class QueryParams implements Params {
         if (null == sql) sql = new StringBuilder(); else sql.setLength(0);
 
         if (null != where)  sql.append(where.toFormatSQL());
-        if (null != order)  sql.append(order.toFormatSQL());
         if (null != group)  sql.append(group.toFormatSQL());
+        if (null != order)  sql.append(order.toFormatSQL());
 
         return this;
     }
